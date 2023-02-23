@@ -8,16 +8,20 @@ B. Shopping Cart: It includes product master detail and transaction detail
 C. Billing
 D. Transaction Complete
 Minimum tables to be included will be as follows
+
 Admin table, User table for admin module.
+
 Product table and transaction table for shopping cart
+
 Invoice table for billing
+
 Views of the application will be Razor views.
-On successful creation of the project, it needs to be placed in azure devops
-repository and all users of the team must upload their work individually so that
-individual accomplishment can be viewed.
+
 Technology to be used
 Front end: MVC Core MVC Application.
+
 Middleware: Asp.NET Core Web API with with Entity Framework Database
+
 first approach
 Backend: Database: MS Sql Server
 Use Cases
@@ -32,7 +36,9 @@ Use Cases
 9. Display Item Details
 10. Logout
 11.Leave a site
+
 Maintenance Related Use Cases
+
 1. Edit (Change, Delete) Customer Info
 2. Inquire about ... via email
 3. Maintain (add, change, delete) Inventory
