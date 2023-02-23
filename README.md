@@ -29,6 +29,7 @@ Middleware: Asp.NET Core Web API with with Entity Framework Database
 
 first approach
 Backend: Database: MS Sql Server
+
 Use Cases
 1. Visit a site
 2. Login
