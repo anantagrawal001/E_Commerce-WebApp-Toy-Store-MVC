@@ -1,0 +1,47 @@
+﻿body {
+    text-align:center;
+}
+
+#AL {
+    border: 20px black;
+    border-radius: 12px;
+    background-color: #3498DB;
+    margin: 40px;
+    padding: 20px;
+}
+#UL {
+    border: 20px black;
+    border-radius: 12px;
+    background-color: #3498DB;
+    margin: 40px;
+    padding: 20px;
+}
+
+#user {
+    border: 20px black;
+    border-radius: 40%;
+    background-color: #3498DB;
+    margin: 50px;
+    padding: 30px;
+}
+#sales {
+    border: 20px black;
+    border-radius: 40%;
+    background-color: #3498DB;
+    margin: 50px;
+    padding: 30px;
+}
+#product {
+    border: 20px black;
+    border-radius: 40%;
+    background-color: #3498DB;
+    margin: 50px;
+    padding: 30px;
+}
+#Inven {
+    border: 20px black;
+    border-radius: 40%;
+    background-color: #3498DB;
+    margin: 50px;
+    padding: 30px;
+}

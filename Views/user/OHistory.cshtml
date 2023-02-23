@@ -1,0 +1,63 @@
+﻿@model IEnumerable<ecommerceG3.Models.Billingdb>
+
+
+<h2>Order History</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.order_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.prod_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Bil_Add)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.shipp_Add)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Order_Amt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Payment_mode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.delivery_date)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.order_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.prod_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Bil_Add)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.shipp_Add)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Order_Amt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Payment_mode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.delivery_date)
+        </td>
+        <td>
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+        </td>
+    </tr>
+}
+
+</table>
+

@@ -1,0 +1,327 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ecom_capestoneModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="admin_login">
+          <Key>
+            <PropertyRef Name="Admin_ID" />
+          </Key>
+          <Property Name="Admin_ID" Type="int" Nullable="false" />
+          <Property Name="pass" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Billingdb">
+          <Key>
+            <PropertyRef Name="order_ID" />
+            <PropertyRef Name="phone_no" />
+          </Key>
+          <Property Name="order_ID" Type="int" Nullable="false" />
+          <Property Name="phone_no" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="prod_name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Bil_Add" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="shipp_Add" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Order_Amt" Type="int" Nullable="false" />
+          <Property Name="Payment_mode" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="delivery_date" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cart">
+          <Key>
+            <PropertyRef Name="Phone_no" />
+            <PropertyRef Name="Product_ID" />
+          </Key>
+          <Property Name="Phone_no" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="user_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Product_ID" Type="int" Nullable="false" />
+          <Property Name="product_price" Type="int" Nullable="false" />
+          <Property Name="qty" Type="int" Nullable="false" />
+          <Property Name="final_pr" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ecom_capestone.dbo.cat' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="cat">
+          <Key>
+            <PropertyRef Name="cat_name" />
+          </Key>
+          <Property Name="cat_name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ecom_capestone.dbo.inventory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="inventory">
+          <Key>
+            <PropertyRef Name="Product_ID" />
+            <PropertyRef Name="Stock" />
+          </Key>
+          <Property Name="Product_ID" Type="int" Nullable="false" />
+          <Property Name="Stock" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="product_db">
+          <Key>
+            <PropertyRef Name="Product_ID" />
+          </Key>
+          <Property Name="Product_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Product_ID" Type="int" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Product_Cat" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Price" Type="int" Nullable="false" />
+          <Property Name="qty" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="userdb">
+          <Key>
+            <PropertyRef Name="Phone_Number" />
+          </Key>
+          <Property Name="User_Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Phone_Number" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="u_pass" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Address_line1" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address_line2" Type="varchar" MaxLength="50" />
+          <Property Name="Pincode" Type="int" Nullable="false" />
+          <Property Name="State" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Gender" Type="varchar" MaxLength="2" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_inventory_product_db">
+          <End Role="product_db" Type="Self.product_db" Multiplicity="1" />
+          <End Role="inventory" Type="Self.inventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product_db">
+              <PropertyRef Name="Product_ID" />
+            </Principal>
+            <Dependent Role="inventory">
+              <PropertyRef Name="Product_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ecom_capestoneModelStoreContainer">
+          <EntitySet Name="admin_login" EntityType="Self.admin_login" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Billingdb" EntityType="Self.Billingdb" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cart" EntityType="Self.cart" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="product_db" EntityType="Self.product_db" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="userdb" EntityType="Self.userdb" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cat" EntityType="Self.cat" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [cat].[cat_name] AS [cat_name]
+    FROM [dbo].[cat] AS [cat]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="inventory" EntityType="Self.inventory" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [inventory].[Product_ID] AS [Product_ID], 
+    [inventory].[Stock] AS [Stock]
+    FROM [dbo].[inventory] AS [inventory]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_inventory_product_db" Association="Self.FK_inventory_product_db">
+            <End Role="product_db" EntitySet="product_db" />
+            <End Role="inventory" EntitySet="inventory" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ecom_capestoneModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="admin_login">
+          <Key>
+            <PropertyRef Name="Admin_ID" />
+          </Key>
+          <Property Name="Admin_ID" Type="Int32" Nullable="false" />
+          <Property Name="pass" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Billingdb">
+          <Key>
+            <PropertyRef Name="order_ID" />
+            <PropertyRef Name="phone_no" />
+          </Key>
+          <Property Name="order_ID" Type="Int32" Nullable="false" />
+          <Property Name="phone_no" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="prod_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Bil_Add" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="shipp_Add" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Order_Amt" Type="Int32" Nullable="false" />
+          <Property Name="Payment_mode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="delivery_date" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cart">
+          <Key>
+            <PropertyRef Name="Phone_no" />
+            <PropertyRef Name="Product_ID" />
+          </Key>
+          <Property Name="Phone_no" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="user_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Product_ID" Type="Int32" Nullable="false" />
+          <Property Name="product_price" Type="Int32" Nullable="false" />
+          <Property Name="qty" Type="Int32" Nullable="false" />
+          <Property Name="final_pr" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="product_db">
+          <Key>
+            <PropertyRef Name="Product_ID" />
+          </Key>
+          <Property Name="Product_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Product_ID" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Product_Cat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Price" Type="Int32" Nullable="false" />
+          <Property Name="qty" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="inventories" Relationship="Self.FK_inventory_product_db" FromRole="product_db" ToRole="inventory" />
+        </EntityType>
+        <EntityType Name="userdb">
+          <Key>
+            <PropertyRef Name="Phone_Number" />
+          </Key>
+          <Property Name="User_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Phone_Number" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="u_pass" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address_line1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address_line2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Pincode" Type="Int32" Nullable="false" />
+          <Property Name="State" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Gender" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="cat">
+          <Key>
+            <PropertyRef Name="cat_name" />
+          </Key>
+          <Property Name="cat_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="inventory">
+          <Key>
+            <PropertyRef Name="Product_ID" />
+            <PropertyRef Name="Stock" />
+          </Key>
+          <Property Name="Product_ID" Type="Int32" Nullable="false" />
+          <Property Name="Stock" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="product_db" Relationship="Self.FK_inventory_product_db" FromRole="inventory" ToRole="product_db" />
+        </EntityType>
+        <Association Name="FK_inventory_product_db">
+          <End Role="product_db" Type="Self.product_db" Multiplicity="1" />
+          <End Role="inventory" Type="Self.inventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product_db">
+              <PropertyRef Name="Product_ID" />
+            </Principal>
+            <Dependent Role="inventory">
+              <PropertyRef Name="Product_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ecom_capestoneEntities3" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="admin_login" EntityType="Self.admin_login" />
+          <EntitySet Name="Billingdbs" EntityType="Self.Billingdb" />
+          <EntitySet Name="carts" EntityType="Self.cart" />
+          <EntitySet Name="product_db" EntityType="Self.product_db" />
+          <EntitySet Name="userdbs" EntityType="Self.userdb" />
+          <EntitySet Name="cats" EntityType="Self.cat" />
+          <EntitySet Name="inventories" EntityType="Self.inventory" />
+          <AssociationSet Name="FK_inventory_product_db" Association="Self.FK_inventory_product_db">
+            <End Role="product_db" EntitySet="product_db" />
+            <End Role="inventory" EntitySet="inventories" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ecom_capestoneModelStoreContainer" CdmEntityContainer="ecom_capestoneEntities3">
+          <EntitySetMapping Name="admin_login">
+            <EntityTypeMapping TypeName="ecom_capestoneModel.admin_login">
+              <MappingFragment StoreEntitySet="admin_login">
+                <ScalarProperty Name="Admin_ID" ColumnName="Admin_ID" />
+                <ScalarProperty Name="pass" ColumnName="pass" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Billingdbs">
+            <EntityTypeMapping TypeName="ecom_capestoneModel.Billingdb">
+              <MappingFragment StoreEntitySet="Billingdb">
+                <ScalarProperty Name="order_ID" ColumnName="order_ID" />
+                <ScalarProperty Name="phone_no" ColumnName="phone_no" />
+                <ScalarProperty Name="prod_name" ColumnName="prod_name" />
+                <ScalarProperty Name="Bil_Add" ColumnName="Bil_Add" />
+                <ScalarProperty Name="shipp_Add" ColumnName="shipp_Add" />
+                <ScalarProperty Name="Order_Amt" ColumnName="Order_Amt" />
+                <ScalarProperty Name="Payment_mode" ColumnName="Payment_mode" />
+                <ScalarProperty Name="delivery_date" ColumnName="delivery_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="carts">
+            <EntityTypeMapping TypeName="ecom_capestoneModel.cart">
+              <MappingFragment StoreEntitySet="cart">
+                <ScalarProperty Name="Phone_no" ColumnName="Phone_no" />
+                <ScalarProperty Name="user_name" ColumnName="user_name" />
+                <ScalarProperty Name="Product_ID" ColumnName="Product_ID" />
+                <ScalarProperty Name="product_price" ColumnName="product_price" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="final_pr" ColumnName="final_pr" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="product_db">
+            <EntityTypeMapping TypeName="ecom_capestoneModel.product_db">
+              <MappingFragment StoreEntitySet="product_db">
+                <ScalarProperty Name="Product_name" ColumnName="Product_name" />
+                <ScalarProperty Name="Product_ID" ColumnName="Product_ID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Product_Cat" ColumnName="Product_Cat" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="userdbs">
+            <EntityTypeMapping TypeName="ecom_capestoneModel.userdb">
+              <MappingFragment StoreEntitySet="userdb">
+                <ScalarProperty Name="User_Name" ColumnName="User_Name" />
+                <ScalarProperty Name="Phone_Number" ColumnName="Phone_Number" />
+                <ScalarProperty Name="u_pass" ColumnName="u_pass" />
+                <ScalarProperty Name="Address_line1" ColumnName="Address_line1" />
+                <ScalarProperty Name="Address_line2" ColumnName="Address_line2" />
+                <ScalarProperty Name="Pincode" ColumnName="Pincode" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cats">
+            <EntityTypeMapping TypeName="ecom_capestoneModel.cat">
+              <MappingFragment StoreEntitySet="cat">
+                <ScalarProperty Name="cat_name" ColumnName="cat_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="inventories">
+            <EntityTypeMapping TypeName="ecom_capestoneModel.inventory">
+              <MappingFragment StoreEntitySet="inventory">
+                <ScalarProperty Name="Product_ID" ColumnName="Product_ID" />
+                <ScalarProperty Name="Stock" ColumnName="Stock" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

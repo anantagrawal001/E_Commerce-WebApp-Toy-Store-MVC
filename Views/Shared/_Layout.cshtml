@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="~/Styles/layo.css" />
+</head>
+
+<body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+
+                @Html.ActionLink("Toy Story", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div style="display:flex; justify-content:space-evenly">
+                <input type="search">
+                <div class="dropdown">
+                    <button onclick="myFunction()" class="dropbtn">My Account</button>
+                    <div id="myDropdown" class="dropdown-content">
+                        <a href="~/Login/Index">Login</a>
+                        <a href="#about">My Profile</a>
+                        <a href="~/user/OHistory">Order History</a>
+                        <a href="~/Login/logout">Log Out</a>
+                    </div>
+                    <a href="~/Cart/Index">
+                        <button class="dropbtn" id="Cart">Cart</button>
+                    </a>
+                    @Html.ActionLink("Home", "Index", "Home")
+                    @Html.ActionLink("About", "About", "Home")
+                    @Html.ActionLink("Contact", "Contact", "Home")
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="dropdown">
+                        <ul>
+                            
+                        </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <br />
+    <br />
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+
+    @RenderSection("scripts", required: false)
+    <script>
+        /* When the user clicks on the button,
+        toggle between hiding and showing the dropdown content */
+        function myFunction() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function (event) {
+            if (!event.target.matches('.dropbtn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
+<br />
+<br />
+

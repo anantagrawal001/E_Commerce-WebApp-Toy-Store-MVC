@@ -1,0 +1,57 @@
+﻿@model IEnumerable<ecommerceG3.Models.cart>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Cart</h2>
+
+<table class="table">
+    <tr>
+
+
+        <th>
+            @Html.DisplayNameFor(model => model.Product_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.product_price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.qty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.final_pr)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Product_ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.product_price)
+            </td>
+            <td>
+                <button>-</button>
+                @Html.DisplayFor(modelItem => item.qty)
+                <button>+</button>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.final_pr)
+            </td>
+            <td>
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+        
+    }
+    
+
+</table>
+<a href="~/cart/Address">
+    <button style="font-size:15px">Proceed to next page</button>
+</a>

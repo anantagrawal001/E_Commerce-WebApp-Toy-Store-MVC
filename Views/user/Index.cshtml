@@ -1,0 +1,53 @@
+﻿@model IEnumerable<ecommerceG3.Models.product_db>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>PRODUCTS</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Product_name)
+        </th>
+       
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+       
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            <img src="https://source.unsplash.com/80x80/?toycar,racecar" />
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product_name)
+        </td>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        
+        <td>
+            <button style="border:1px solid blue; ">Add To Cart</button>
+        </td>
+    </tr>
+}
+
+</table>

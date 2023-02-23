@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}<br><br>
+
+<body>
+    <div id="payment_Method">
+        <h3>Select Payment Method</h3><br>
+
+        <input type="radio" id="DC" disabled name="PM" value="Debit Card">
+        <label for="DC">Debit Card</label><br>
+        <input type="radio" id="CC" disabled name="PM" value="Credit Card">
+        <label for="CC">Credit Card</label><br>
+        <input type="radio" id="UPI" disabled name="PM" value="UPI: Unified Payment Interface">
+        <label for="UPI">UPI: Unified Payment Interface</label><br>
+        <input type="radio" id="NB" disabled name="PM" value="Net Banking">
+        <label for="NB">Net Banking</label><br>
+        <input type="radio" id="COD" name="PM" value="Cash On Delivery">
+        <label for="COD">Cash On Delivery</label><br>
+    </div><br /><br />
+        <a href="~/payment/proceed"><button id="Submit" style="border-radius:10%">Confirm Order and Proceed to pay</button></a>
+</body>
+
