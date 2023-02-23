@@ -1,14 +1,19 @@
 # E_Commerce-WebApp-Toy-Store-MVC
-Created an ecommerce ASP.NET Core application using the below database
+Created an ecommerce ASP.NET Core MVC application using the below database
 structure using Entity framework database first approach. The store is about
 selling of different toys.
-The application will have four modules:
-A. LogIn Module : Login Module will have Admin Login and Customer Login
-B. Shopping Cart: It includes product master detail and transaction detail
-C. Billing
-D. Transaction Complete
-Minimum tables to be included will be as follows
 
+The application will have four modules:
+
+A. LogIn Module : Login Module will have Admin Login and Customer Login
+
+B. Shopping Cart: It includes product master detail and transaction detail
+
+C. Billing
+
+D. Transaction Complete
+
+Database tables
 Admin table, User table for admin module.
 
 Product table and transaction table for shopping cart
@@ -18,7 +23,7 @@ Invoice table for billing
 Views of the application will be Razor views.
 
 Technology to be used
-Front end: MVC Core MVC Application.
+Front end: MVC Core Application.
 
 Middleware: Asp.NET Core Web API with with Entity Framework Database
 
